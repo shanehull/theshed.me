@@ -3,9 +3,35 @@
 <link rel="stylesheet" type="text/css" href="style.css">
     <head>
         <title>The Shed</title>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+        <script>
+          function fx(o) {
+            var $o = $(o);
+
+            $o.html($o.text().replace(/([\S])/g, "<span>$1</span>"));
+            $o.css("position", "relative");
+            $("span", $o).each(function(i) {
+              var newTop = Math.floor(Math.random()*500)*((i%2)?1:-1);
+              var newLeft = Math.floor(Math.random()*500)*((i%2)?1:-1);
+
+              $(this).css({position: "relative",
+                opacity: 5,
+                fontSize: 10,
+                top: 0,
+                left: 0
+              }).animate({
+                opacity: 0,
+                fontSize: 30,
+                top: newTop,
+                left:newLeft
+              },1000);
+            });
+          }
+        </script>
     </head>
     <body>
         <pre class="container">
+            <span onclick="fx(this)">
                    _
                 _-'_'-_
              _-' _____ '-_
@@ -16,6 +42,8 @@
   |   |    |~~~~~~~|  o|~~~|     ( )
   -----    |~~~~~~~|   |~~~|    (, ,)
   |\/\|    |~~~~~~~|   |~~~|      |
-~~~~~~~~~~~-----------------~~~~~~'~~~</pre>
+~~~~~~~~~~~-----------------~~~~~~'~~~
+            </span>
+        </pre>
     </body>
 </html>
